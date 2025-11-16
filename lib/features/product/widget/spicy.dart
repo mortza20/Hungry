@@ -17,7 +17,8 @@ class Spicy extends StatelessWidget {
           children: [
             CustomText(
               text:
-                  "Customize Your Burger\n to Your Tastes>\n Ultimate Experience",
+                  "Customize Your Burger\n to Your Tastes\n Ultimate Experience",
+              weight: FontWeight.w500,
             ),
             Slider(
               min: 0,
@@ -29,9 +30,9 @@ class Spicy extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                CustomText(text: "🥶"),
+                CustomText(text: "🥶", size: 20),
                 Gap(100),
-                CustomText(text: "🌶"),
+                CustomText(text: "🌶", size: 20),
               ],
             ),
           ],

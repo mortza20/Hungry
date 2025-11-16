@@ -1,10 +1,37 @@
 import 'package:dontknow_jus_test/core/constants/app_colors.dart';
+import 'package:dontknow_jus_test/root.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
-class SplashView extends StatelessWidget {
+class SplashView extends StatefulWidget {
   const SplashView({super.key});
+
+  @override
+  State<SplashView> createState() => _SplashViewState();
+}
+
+class _SplashViewState extends State<SplashView> {
+  bool startAnimation = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(Duration(milliseconds: 200), () {
+      setState(() {
+        startAnimation = true;
+      });
+    });
+
+    Future.delayed(
+      Duration(seconds: 1),
+      () => Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (c) => Root()),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +41,31 @@ class SplashView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Gap(280),
-            SvgPicture.asset("assets/logo/logo.svg"),
+            Gap(250),
+
+            AnimatedSlide(
+              duration: Duration(milliseconds: 700),
+              curve: Curves.easeOut,
+              offset: startAnimation ? Offset(0, 0) : Offset(0, -0.3),
+              child: AnimatedOpacity(
+                duration: Duration(milliseconds: 700),
+                opacity: startAnimation ? 1 : 0,
+                child: SvgPicture.asset("assets/logo/logo.svg"),
+              ),
+            ),
+
             Spacer(),
-            Image.asset("assets/splash/splash.png"),
+
+            AnimatedSlide(
+              duration: Duration(milliseconds: 700),
+              curve: Curves.easeOut,
+              offset: startAnimation ? Offset(0, 0) : Offset(0, 0.3),
+              child: AnimatedOpacity(
+                duration: Duration(milliseconds: 700),
+                opacity: startAnimation ? 1 : 0,
+                child: Image.asset("assets/splash/splash.png"),
+              ),
+            ),
           ],
         ),
       ),

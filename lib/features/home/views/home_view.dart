@@ -23,42 +23,51 @@ class _HomeViewState extends State<HomeView> {
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
-          ///header
-          SliverAppBar(
-            elevation: 0,
-            pinned: true,
-            floating: false,
-            scrolledUnderElevation: 0,
-            backgroundColor: Colors.white,
-            toolbarHeight: 160,
-            automaticallyImplyLeading: false,
-            flexibleSpace: Padding(
-            padding: const EdgeInsets.only(top: 38,left: 20,right: 20),
-            child: Column(children: [UserHeader(),Gap(10),SearchBox()],),
-          ) ,),
-
-          ///Search+Category
-
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 5),
-                child: FoodCateogry()
+            ///Header + SearchBox
+            SliverAppBar(
+              elevation: 0,
+              pinned: true,
+              floating: false,
+              scrolledUnderElevation: 0,
+              backgroundColor: Colors.white,
+              toolbarHeight: 160,
+              automaticallyImplyLeading: false,
+              flexibleSpace: Padding(
+                padding: const EdgeInsets.only(top: 38, left: 20, right: 20),
+                child: Column(children: [UserHeader(), Gap(15), SearchBox()]),
               ),
             ),
-          ///GridView
 
+            ///Category
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: FoodCateogry(),
+              ),
+            ),
+
+            ///GridView
             SliverPadding(
-              padding: EdgeInsetsGeometry.symmetric(horizontal: 15),
+              padding: EdgeInsetsGeometry.symmetric(
+                horizontal: 15,
+                vertical: 20,
+              ),
               sliver: SliverGrid(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 0.8,
+                  crossAxisSpacing: 7,
+                  mainAxisSpacing: 7,
                 ),
                 delegate: SliverChildBuilderDelegate(
                   childCount: 6,
+
                   (context, index) => GestureDetector(
-                    onTap:(){
-                      Navigator.push(context, MaterialPageRoute(builder: (c)=>ProductDetailsView()));
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (c) => ProductDetailsView()),
+                      );
                     },
                     child: CardItem(
                       image: "assets/test/test.png",

@@ -26,7 +26,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Spicy(value: value, onChanged: (v) => setState(() => value = v)),
-              Gap(10),
+              Gap(20),
               CustomText(text: "Toppings", weight: FontWeight.w600, size: 20),
               Gap(27),
               SingleChildScrollView(
@@ -45,13 +45,13 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                   }),
                 ),
               ),
-              Gap(20),
+              Gap(30),
               CustomText(
                 text: "Side Options",
                 weight: FontWeight.w600,
                 size: 20,
               ),
-              Gap(20),
+              Gap(30),
               SingleChildScrollView(
                 clipBehavior: Clip.none,
                 scrollDirection: Axis.horizontal,
@@ -68,35 +68,50 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                   }),
                 ),
               ),
-              Gap(30),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Gap(150),
+            ],
+          ),
+        ),
+      ),
+      bottomSheet: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(40),
+          boxShadow: [BoxShadow(color: Colors.grey.shade400, blurRadius: 7)],
+          color: Colors.white,
+        ),
+        padding: EdgeInsets.all(10),
+        height: 120,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 12),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomText(
-                          text: "Total",
-                          size: 20,
-                          weight: FontWeight.w400,
-                        ),
-                        CustomText(
-                          text: "\$ 19.8",
-                          size: 27,
-                          weight: FontWeight.bold,
-                        ),
-                      ],
+                    CustomText(
+                      text: "Total",
+                      size: 20,
+                      weight: FontWeight.w400,
                     ),
-                    CustomButton(text: "Add To Cart", onTap: () {}),
+                    CustomText(
+                      text: "\$ 19.8",
+                      size: 27,
+                      weight: FontWeight.bold,
+                    ),
                   ],
                 ),
-              ),
-            ],
+                CustomButton(text: "Add To Cart", onTap: () {}),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
+
+
+//

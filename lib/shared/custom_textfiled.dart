@@ -6,11 +6,11 @@ class CustomTextfiled extends StatefulWidget {
     super.key,
     required this.hint,
     required this.isPassword,
-    required this.controller,
+    this.controller,
   });
   final String hint;
   final bool isPassword;
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   @override
   State<CustomTextfiled> createState() => _CustomTextfiledState();
