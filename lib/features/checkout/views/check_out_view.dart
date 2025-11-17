@@ -2,7 +2,6 @@ import 'package:dontknow_jus_test/core/constants/app_colors.dart';
 import 'package:dontknow_jus_test/features/checkout/widget/order_summary.dart';
 import 'package:dontknow_jus_test/shared/Custom_button.dart';
 import 'package:dontknow_jus_test/shared/custom_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -20,98 +19,6 @@ class _CheckOutViewState extends State<CheckOutView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(40),
-          boxShadow: [BoxShadow(color: Colors.grey.shade400, blurRadius: 7)],
-          color: Colors.white,
-        ),
-        padding: EdgeInsets.all(10),
-        height: 120,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 12),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomText(
-                    text: "Total Price",
-                    size: 15,
-                    weight: FontWeight.w400,
-                  ),
-                  CustomText(
-                    text: "\$ 19.8",
-                    size: 27,
-                    weight: FontWeight.bold,
-                  ),
-                ],
-              ),
-              CustomButton(
-                text: "Pay Now",
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (v) {
-                      return Dialog(
-                        child: Container(
-                          height: 300,
-                          width: 150,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.shade700,
-                                blurRadius: 7,
-                              ),
-                            ],
-                            color: Colors.white,
-                          ),
-                          child: Column(
-                            children: [
-                              Gap(25),
-                              CircleAvatar(
-                                radius: 30,
-                                backgroundColor: AppColors.primary,
-                                child: Icon(
-                                  Icons.check,
-                                  color: Colors.white,
-                                  size: 40,
-                                ),
-                              ),
-                              Gap(10),
-                              CustomText(
-                                text: "Success !",
-                                size: 35,
-                                color: AppColors.primary,
-                                weight: FontWeight.bold,
-                              ),
-                              Gap(5),
-                              CustomText(
-                                text:
-                                    "Your payment was successful.\nA receipt for this purchase has\nbeen sent to your email.",
-                                color: Colors.grey.shade600,
-                              ),
-                              Gap(20),
-                              CustomButton(
-                                text: "Go back",
-                                width: 120,
-                                onTap: () => Navigator.pop(context),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
       appBar: AppBar(backgroundColor: Colors.white),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -226,6 +133,98 @@ class _CheckOutViewState extends State<CheckOutView> {
               ],
             ),
           ],
+        ),
+      ),
+      bottomSheet: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(40),
+          boxShadow: [BoxShadow(color: Colors.grey.shade400, blurRadius: 7)],
+          color: Colors.white,
+        ),
+        padding: EdgeInsets.all(10),
+        height: 120,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 12),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomText(
+                    text: "Total Price",
+                    size: 15,
+                    weight: FontWeight.w400,
+                  ),
+                  CustomText(
+                    text: "\$ 19.8",
+                    size: 27,
+                    weight: FontWeight.bold,
+                  ),
+                ],
+              ),
+              CustomButton(
+                text: "Pay Now",
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (v) {
+                      return Dialog(
+                        child: Container(
+                          height: 300,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.shade700,
+                                blurRadius: 7,
+                              ),
+                            ],
+                            color: Colors.white,
+                          ),
+                          child: Column(
+                            children: [
+                              Gap(25),
+                              CircleAvatar(
+                                radius: 30,
+                                backgroundColor: AppColors.primary,
+                                child: Icon(
+                                  Icons.check,
+                                  color: Colors.white,
+                                  size: 40,
+                                ),
+                              ),
+                              Gap(10),
+                              CustomText(
+                                text: "Success !",
+                                size: 35,
+                                color: AppColors.primary,
+                                weight: FontWeight.bold,
+                              ),
+                              Gap(5),
+                              CustomText(
+                                text:
+                                    "Your payment was successful.\nA receipt for this purchase has\nbeen sent to your email.",
+                                color: Colors.grey.shade600,
+                              ),
+                              Gap(20),
+                              CustomButton(
+                                text: "Go back",
+                                width: 120,
+                                onTap: () => Navigator.pop(context),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

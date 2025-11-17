@@ -20,66 +20,70 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        body: CustomScrollView(
-          slivers: [
-            ///Header + SearchBox
-            SliverAppBar(
-              elevation: 0,
-              pinned: true,
-              floating: false,
-              scrolledUnderElevation: 0,
-              backgroundColor: Colors.white,
-              toolbarHeight: 160,
-              automaticallyImplyLeading: false,
-              flexibleSpace: Padding(
-                padding: const EdgeInsets.only(top: 38, left: 20, right: 20),
-                child: Column(children: [UserHeader(), Gap(15), SearchBox()]),
-              ),
-            ),
-
-            ///Category
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: FoodCateogry(),
-              ),
-            ),
-
-            ///GridView
-            SliverPadding(
-              padding: EdgeInsetsGeometry.symmetric(
-                horizontal: 15,
-                vertical: 20,
-              ),
-              sliver: SliverGrid(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.8,
-                  crossAxisSpacing: 7,
-                  mainAxisSpacing: 7,
+      child: SafeArea(
+        child: Scaffold(
+          body: CustomScrollView(
+            slivers: [
+              ///Header + SearchBox
+              SliverAppBar(
+                elevation: 0,
+                pinned: true,
+                floating: false,
+                scrolledUnderElevation: 0,
+                backgroundColor: Colors.white,
+                toolbarHeight: 160,
+                automaticallyImplyLeading: false,
+                flexibleSpace: Padding(
+                  padding: const EdgeInsets.only(top: 0, left: 20, right: 20),
+                  child: Column(children: [UserHeader(), Gap(15), SearchBox()]),
                 ),
-                delegate: SliverChildBuilderDelegate(
-                  childCount: 6,
+              ),
 
-                  (context, index) => GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (c) => ProductDetailsView()),
-                      );
-                    },
-                    child: CardItem(
-                      image: "assets/test/test.png",
-                      name: "Hamburger",
-                      desc: "Chicken Burger",
-                      rate: "4.6",
+              ///Category
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
+                  child: FoodCateogry(),
+                ),
+              ),
+
+              ///GridView
+              SliverPadding(
+                padding: EdgeInsetsGeometry.symmetric(
+                  horizontal: 15,
+                  vertical: 20,
+                ),
+                sliver: SliverGrid(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.8,
+                    crossAxisSpacing: 7,
+                    mainAxisSpacing: 7,
+                  ),
+                  delegate: SliverChildBuilderDelegate(
+                    childCount: 6,
+
+                    (context, index) => GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (c) => ProductDetailsView(),
+                          ),
+                        );
+                      },
+                      child: CardItem(
+                        image: "assets/test/test.png",
+                        name: "Hamburger",
+                        desc: "Chicken Burger",
+                        rate: "4.6",
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

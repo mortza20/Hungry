@@ -5,6 +5,7 @@ import 'package:dontknow_jus_test/features/home/views/home_view.dart';
 import 'package:dontknow_jus_test/features/orderHistory/views/orderHistory_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
 class Root extends StatefulWidget {
   const Root({super.key});
@@ -30,45 +31,48 @@ class _RootState extends State<Root> {
     return Scaffold(
       body: PageView(
         physics: NeverScrollableScrollPhysics(),
-        controller: controller, children: screens),
+        controller: controller,
+        children: screens,
+      ),
+
       bottomNavigationBar: Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.only(bottom: 20, top: 0),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15),
+          ),
           color: AppColors.primary,
         ),
-        child: BottomNavigationBar(
-          elevation: 0,
+        child: WaterDropNavBar(
           backgroundColor: Colors.transparent,
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.grey.shade700,
-
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.home),
-              label: "home",
+          inactiveIconColor: Colors.grey.shade300,
+          waterDropColor: Colors.white,
+          barItems: [
+            BarItem(
+              filledIcon: Icons.home_filled,
+              outlinedIcon: CupertinoIcons.home,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.cart),
-              label: "cart",
+            BarItem(
+              filledIcon: Icons.shopping_cart,
+              outlinedIcon: CupertinoIcons.cart,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.restaurant_menu),
-              label: "Order History",
+            BarItem(
+              filledIcon: Icons.restaurant,
+              outlinedIcon: Icons.restaurant_menu,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.profile_circled),
-              label: "Profile",
+            BarItem(
+              filledIcon: Icons.person,
+              outlinedIcon: CupertinoIcons.profile_circled,
             ),
           ],
-          onTap: (index) {
+          selectedIndex: currentPage,
+          onItemSelected: (index) {
             setState(() {
               currentPage = index;
             });
             controller.jumpToPage(currentPage);
           },
-          currentIndex: currentPage,
         ),
       ),
     );
