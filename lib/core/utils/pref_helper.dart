@@ -14,12 +14,13 @@ await prefs.setString(_tokenKey,token);
 static Future<String?> getToken()async{
 final prefs = await SharedPreferences.getInstance();
  prefs.get(_tokenKey);
+ return null;
 }
 
 static Future<void>clearToken()async{
 final prefs= await SharedPreferences.getInstance()
 ;
-prefs.remove(_tokenKey);
+prefs.remove(_tokenKey)
 }
 
 }

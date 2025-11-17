@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:dontknow_jus_test/core/utils/pref_helper.dart';
 
 class DioClient {
 final Dio _dio =Dio(
@@ -11,8 +12,8 @@ BaseOptions(
 DioClient (){
   _dio.interceptors.add(
     InterceptorsWrapper(
-      onRequest: (options,handler) {
-        final token="mortza aldaly";
+      onRequest: (options,handler)async {
+        final token= await PrefHelper.getToken();
         if(token!= null&& token.isNotEmpty){
           options.headers["authorization"]="Bearer$token";
         }
