@@ -1,5 +1,7 @@
 import 'package:dontknow_jus_test/core/constants/app_colors.dart';
+import 'package:dontknow_jus_test/features/auth/view/login_view.dart';
 import 'package:dontknow_jus_test/features/auth/widgets/custom_aut_btn.dart';
+import 'package:dontknow_jus_test/shared/custom_text.dart';
 import 'package:dontknow_jus_test/shared/custom_textfiled.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -50,23 +52,24 @@ class SignupView extends StatelessWidget {
                     isPassword: true,
                     controller: passController,
                   ),
+
                   //confirm password flied
-                  Gap(15),
-                  CustomTextfiled(
-                    hint: "Confirm Password ",
-                    isPassword: true,
-                    controller: confirmPassController,
-                  ),
                   Gap(20),
 
                   /// Sign up btn
-                  CustomAutBtn(
-                    text: "Sign up",
-                    tapbtn: () {
-                      if (formkey.currentState!.validate()) {
-                        print("sign up seccess");
-                      }
+                  CustomAutBtn(text: "Sign up", tapbtn: () {}),
+                  Gap(20),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(
+                        context,
+                        MaterialPageRoute(builder: (e) => LoginView()),
+                      );
                     },
+                    child: CustomText(
+                      text: "Alrady have an account? sgin in",
+                      color: Colors.white,
+                    ),
                   ),
                 ],
               ),

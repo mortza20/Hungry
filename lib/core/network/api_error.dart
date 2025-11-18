@@ -5,6 +5,6 @@ class ApiError {
 
   @override
   String toString() {
-    return "Errors:$message (StatesCode is$statusCode";
+    return "Error is:$message (StatesCode is$statusCode";
   }
 }

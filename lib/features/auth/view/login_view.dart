@@ -1,5 +1,9 @@
 import 'package:dontknow_jus_test/core/constants/app_colors.dart';
+import 'package:dontknow_jus_test/core/network/api_error.dart';
+import 'package:dontknow_jus_test/features/auth/data/auth_repo.dart';
+import 'package:dontknow_jus_test/features/auth/view/signup_view.dart';
 import 'package:dontknow_jus_test/features/auth/widgets/custom_aut_btn.dart';
+import 'package:dontknow_jus_test/root.dart';
 import 'package:dontknow_jus_test/shared/custom_text.dart';
 import 'package:dontknow_jus_test/shared/custom_textfiled.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +18,29 @@ class LoginView extends StatelessWidget {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
     final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
+    AuthRepo authRepo = AuthRepo();
+
+    Future<void> login() async {
+      try {
+        final user = await authRepo.login(
+          emailController.text.trim(),
+          passwordController.text.trim(),
+        );
+        if (user != null) {
+          Navigator.push(context, MaterialPageRoute(builder: (c) => Root()));
+        }
+      } catch (e) {
+        String errorMsg = "unhandeld error in login";
+        if (e is ApiError) {
+          errorMsg = e.message;
+        }
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(errorMsg)));
+      }
+    }
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -50,13 +77,33 @@ class LoginView extends StatelessWidget {
                   ),
                   Gap(20),
                   // The "LoginBoutton"
-                  CustomAutBtn(
-                    text: "Sign up",
-                    tapbtn: () {
-                      if (formkey.currentState!.validate()) {
-                        print("Login up seccess");
-                      }
+                  CustomAutBtn(text: "SignIn", tapbtn: login),
+                  Gap(20),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (v) => Root()),
+                      );
                     },
+                    child: CustomText(
+                      text: "-- Contnue as a gust --",
+                      size: 20,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Gap(20),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (e) => SignupView()),
+                      );
+                    },
+                    child: CustomText(
+                      text: "dont have an account?",
+                      color: Colors.white,
+                    ),
                   ),
                 ],
               ),

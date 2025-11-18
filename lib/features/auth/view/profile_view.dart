@@ -1,4 +1,5 @@
 import 'package:dontknow_jus_test/core/constants/app_colors.dart';
+import 'package:dontknow_jus_test/features/auth/view/login_view.dart';
 import 'package:dontknow_jus_test/shared/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -125,21 +126,29 @@ class ProfileView extends StatelessWidget {
                   ),
                 ),
 
-                Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  width: 150,
-                  padding: EdgeInsets.all(20),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(
+                      context,
+                      MaterialPageRoute(builder: (v) => LoginView()),
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.primary,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    width: 150,
+                    padding: EdgeInsets.all(20),
 
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      CustomText(text: "Logout", color: Colors.white),
-                      Gap(10),
-                      Icon(Icons.logout, color: Colors.white),
-                    ],
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        CustomText(text: "Logout", color: Colors.white),
+                        Gap(10),
+                        Icon(Icons.logout, color: Colors.white),
+                      ],
+                    ),
                   ),
                 ),
               ],

@@ -1,5 +1,5 @@
 import 'package:dontknow_jus_test/core/constants/app_colors.dart';
-import 'package:dontknow_jus_test/root.dart';
+import 'package:dontknow_jus_test/features/auth/view/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -28,7 +28,7 @@ class _SplashViewState extends State<SplashView> {
       Duration(seconds: 1),
       () => Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (c) => Root()),
+        MaterialPageRoute(builder: (c) => LoginView()),
       ),
     );
   }
