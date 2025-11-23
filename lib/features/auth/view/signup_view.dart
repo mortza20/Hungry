@@ -15,7 +15,7 @@ class SignupView extends StatelessWidget {
     TextEditingController passController = TextEditingController();
     TextEditingController nameController = TextEditingController();
     TextEditingController emailController = TextEditingController();
-    TextEditingController confirmPassController = TextEditingController();
+
     final GlobalKey<FormState> formkey = GlobalKey<FormState>();
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
